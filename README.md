@@ -17,9 +17,9 @@ Please check [CHANGELOG.md](CHANGELOG.md) for details about updating to a new ve
 The plugin conforms to the Cordova plugin specification, it can be installed
 using the Cordova / Phonegap command line interface.
 
-    phonegap plugin add cordova-plugin-http
+    phonegap plugin add https://github.com/LowieDown/cordova-HTTP
 
-    cordova plugin add cordova-plugin-http
+    cordova plugin add https://github.com/LowieDown/cordova-HTTP
 
 ## Usage
 
@@ -92,7 +92,7 @@ Whether or not to validate the domain name in the certificate.  This defaults to
 Execute a POST request.  Takes a URL, parameters, and headers.
 
 #### success
-The success function receives a response object with 3 properties: status, data, and headers.  Status is the HTTP response code. Data is the response from the server as a string. Headers is an object with the headers.  Here's a quick example:
+The success function receives a response object with 4 properties: status, data, cookies, and headers.  Status is the HTTP response code. Data is the response from the server as a string. Cookies is all of the Set-cookie headers concatenated with a semicolon (;). Headers is an object with the headers.  Here's a quick example:
 
     {
         status: 200,
