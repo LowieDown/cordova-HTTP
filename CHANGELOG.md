@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.1
+
+- Added cookies property on successful response
+
+### Potentially Breaking Changes
+
+- No longer automatically follows redirects (302 response)
+
 ## v1.2.0
 
 - Added support for TLSv1.1 and TLSv1.2 for android versions 4.1-4.4 (API levels 16-19)
