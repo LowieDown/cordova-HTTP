@@ -35,11 +35,24 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
         try {
             HttpRequest request = HttpRequest.get(this.getUrlString(), this.getParams(), false);
             this.setupSecurity(request);
+            request.followRedirects(false);
             request.acceptCharset(CHARSET);
             request.headers(this.getHeaders());
             int code = request.code();
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
+            // response.put("cookie", request.header("Set-Cookie"));
+            // response.put("cookies", request.headers("Set-Cookie"));
+            StringBuilder sb = new StringBuilder();
+            String[] cookies = request.headers("Set-Cookie");
+            for (int i = 0; i < cookies.length; i++) {
+                if (i > 0) {
+                    sb.append(";");
+                }
+                String item = cookies[i];
+                sb.append(item);
+            }
+            response.put("cookie", sb.toString());
             this.addResponseHeaders(request, response);
             response.put("status", code);
             if (code >= 200 && code < 300) {
