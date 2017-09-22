@@ -39,7 +39,7 @@ public abstract class CordovaHttp {
     private static AtomicBoolean acceptAllCerts = new AtomicBoolean(false);
     private static AtomicBoolean validateDomainName = new AtomicBoolean(true);
 
-    private Map<String, String> cookies;
+    private Map<String, String> cookies = new Map<String, String>();
 
     private String urlString;
     private Map<?, ?> params;
