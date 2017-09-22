@@ -39,8 +39,6 @@ public abstract class CordovaHttp {
     private static AtomicBoolean acceptAllCerts = new AtomicBoolean(false);
     private static AtomicBoolean validateDomainName = new AtomicBoolean(true);
 
-    private Map<String, String> cookies = new HashMap<String, String>();
-
     private String urlString;
     private Map<?, ?> params;
     private Map<String, String> headers;
@@ -80,24 +78,7 @@ public abstract class CordovaHttp {
     }
     
     protected Map<String, String> getHeaders() {
-        //add cookies to headers before returning them
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, String> entry : this.cookies.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            if ((key != null) && (value != null)) {
-                sb.append(key);
-                sb.append("=");
-                sb.append(value);
-                sb.append(";");
-            }
-        }
-        this.headers.put("Cookie", sb.toString());
         return this.headers;
-    }
-    
-    protected void setCookie(String name, String value) {
-        this.cookies.put(name, value);
     }
     
     protected CallbackContext getCallbackContext() {
