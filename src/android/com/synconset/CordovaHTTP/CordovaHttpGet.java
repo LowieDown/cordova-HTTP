@@ -37,13 +37,29 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
             this.setupSecurity(request);
             request.followRedirects(false);
             request.acceptCharset(CHARSET);
-            request.headers(this.getHeaders());
+            Map<String, String> hdrs = this.getHeaders();
+            request.headers(hdrs);
             int code = request.code();
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
             // response.put("cookie", request.header("Set-Cookie"));
             // response.put("cookies", request.headers("Set-Cookie"));
             StringBuilder sb = new StringBuilder();
+            //====================================
+            // for testing headers
+            for (Map.Entry<String, String> entry : hdrs.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                if ((key != null) && (value != null)) {
+                    sb.append(key);
+                    sb.append("=");
+                    sb.append(value);
+                    sb.append(";");
+                }
+            }
+            response.put("headersbefore", sb.toString());
+            //====================================
+            sb = new StringBuilder();
             String[] cookies = request.headers("Set-Cookie");
             for (int i = 0; i < cookies.length; i++) {
                 if (i > 0) {
@@ -57,6 +73,21 @@ public class CordovaHttpGet extends CordovaHttp implements Runnable {
                 sb.append(item);
             }
             response.put("cookie", sb.toString());
+            //====================================
+            // for testing headers
+            sb = new StringBuilder();
+            for (Map.Entry<String, String> entry : hdrs.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
+                if ((key != null) && (value != null)) {
+                    sb.append(key);
+                    sb.append("=");
+                    sb.append(value);
+                    sb.append(";");
+                }
+            }
+            response.put("headersafter", sb.toString());
+            //====================================
             this.addResponseHeaders(request, response);
             response.put("status", code);
             if (code >= 200 && code < 300) {
