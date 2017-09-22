@@ -22,6 +22,17 @@ function mergeHeaders(globalHeaders, localHeaders) {
             localHeaders[key] = globalHeaders[key];
         }
     }
+    var cookieString = "";
+    var cookieKeys = Object.keys(http.cookies);
+    var ckey;
+    for (var c = 0; c < cookieKeys.length; c++) {
+        if (c > 0) {
+            cookieString += ";";
+        }
+        ckey = cookieKeys[i];
+        cookieString += ckey + "=" + http.cookies[ckey];
+    }
+    localHeaders["Cookie"] = cookieString;
     return localHeaders;
 }
 
