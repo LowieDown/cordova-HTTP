@@ -43,6 +43,10 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
                     sb.append(";");
                 }
                 String item = cookies[i];
+                String[] parts = item.split("=", 2);
+                String cookieName = parts[0];
+                String cookieValue = parts[1];
+                this.setCookie(cookieName, cookieValue);
                 sb.append(item);
             }
             response.put("cookie", sb.toString());
