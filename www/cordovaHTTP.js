@@ -27,6 +27,7 @@ function mergeHeaders(globalHeaders, localHeaders) {
 
 var http = {
     headers: {},
+    cookies: {},
     sslPinning: false,
     getBasicAuthHeader: function(username, password) {
         return {'Authorization': 'Basic ' + b64EncodeUnicode(username + ':' + password)};
@@ -36,6 +37,9 @@ var http = {
     },
     setHeader: function(header, value) {
         this.headers[header] = value;
+    },
+    setCookie: function(name, value) {
+        this.cookies[name] = value;
     },
     enableSSLPinning: function(enable, success, failure) {
         return exec(success, failure, "CordovaHttpPlugin", "enableSSLPinning", [enable]);
@@ -142,6 +146,9 @@ if (typeof angular !== "undefined") {
             },
             setHeader: function(header, value) {
                 return http.setHeader(header, value);
+            },
+            setCookie: function(name, value) {
+                return http.setCookie(name, value);
             },
             enableSSLPinning: function(enable) {
                 return makePromise(http.enableSSLPinning, [enable]);
