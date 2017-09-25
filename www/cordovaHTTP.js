@@ -22,23 +22,11 @@ function mergeHeaders(globalHeaders, localHeaders) {
             localHeaders[key] = globalHeaders[key];
         }
     }
-    var cookieString = "";
-    var cookieKeys = Object.keys(http.cookies);
-    var ckey;
-    for (var c = 0; c < cookieKeys.length; c++) {
-        if (c > 0) {
-            cookieString += ";";
-        }
-        ckey = cookieKeys[i];
-        cookieString += ckey + "=" + http.cookies[ckey];
-    }
-    localHeaders["Cookie"] = cookieString;
     return localHeaders;
 }
 
 var http = {
     headers: {},
-    cookies: {},
     sslPinning: false,
     getBasicAuthHeader: function(username, password) {
         return {'Authorization': 'Basic ' + b64EncodeUnicode(username + ':' + password)};
@@ -48,9 +36,6 @@ var http = {
     },
     setHeader: function(header, value) {
         this.headers[header] = value;
-    },
-    setCookie: function(name, value) {
-        this.cookies[name] = value;
     },
     enableSSLPinning: function(enable, success, failure) {
         return exec(success, failure, "CordovaHttpPlugin", "enableSSLPinning", [enable]);
@@ -157,9 +142,6 @@ if (typeof angular !== "undefined") {
             },
             setHeader: function(header, value) {
                 return http.setHeader(header, value);
-            },
-            setCookie: function(name, value) {
-                return http.setCookie(name, value);
             },
             enableSSLPinning: function(enable) {
                 return makePromise(http.enableSSLPinning, [enable]);
