@@ -107,7 +107,7 @@
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [self setResults: dictionary withTask: task];
         [dictionary setObject:responseObject forKey:@"data"];
-        [dictionary setObject:responseObject forKey:@"headers"];
+        [dictionary setObject:responseObject forKey:@"allHeaderFields"];
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dictionary];
         [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } failure:^(NSURLSessionTask *task, NSError *error) {
