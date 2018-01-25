@@ -114,6 +114,7 @@ public abstract class CordovaHttp {
     }
 
     protected void addResponseHeaders(HttpRequest request, JSONObject response) throws JSONException {
+        StringBuilder sb = new StringBuilder();
         Map<String, List<String>> headers = request.headers();
         Map<String, String> parsed_headers = new HashMap<String, String>();
         for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
@@ -121,8 +122,10 @@ public abstract class CordovaHttp {
             List<String> value = entry.getValue();
             if ((key != null) && (!value.isEmpty())) {
                 parsed_headers.put(key, value.get(0));
+                sb.add("\"" + key + "\" = \"" + value.get(0) + "\",\n");
             }
         }
         response.put("headers", new JSONObject(parsed_headers));
+        response.put("headersString", sb.toString());
     }
 }
