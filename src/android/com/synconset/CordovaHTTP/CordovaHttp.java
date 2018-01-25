@@ -124,6 +124,7 @@ public abstract class CordovaHttp {
                 parsed_headers.put(key, value.get(0));
                 //sb.append(key + " = " + value.get(0) + ", ");
                 sb.append("\"").append(key).append("\" = \"").append(value.get(0)).append("\", ");
+                sb.append("\n");
             }
         }
         response.put("headers", new JSONObject(parsed_headers));
