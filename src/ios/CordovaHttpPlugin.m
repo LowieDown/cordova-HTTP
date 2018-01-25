@@ -31,7 +31,7 @@
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         [dictionary setObject:[NSNumber numberWithInt:response.statusCode] forKey:@"status"];
         [dictionary setObject:response.allHeaderFields forKey:@"headers"];
-        NSString *newString = [[response.allHeaderFields[@"Set-Cookie"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@"~~~~"];
+        NSString *myString = [[response.allHeaderFields[@"Set-Cookie"] componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@"~~~~"];
         [dictionary setObject:myString forKey:@"cookie"];
     }
 }
