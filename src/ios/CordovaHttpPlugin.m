@@ -32,7 +32,7 @@
         [dictionary setObject:[NSNumber numberWithInt:response.statusCode] forKey:@"status"];
         [dictionary setObject:response.allHeaderFields forKey:@"headers"];
         NSString *myString = [[NSString stringWithFormat:@"%@", response.allHeaderFields] stringByReplacingOccurrencesOfString:@"\n" withString:@";~~;"];
-        [dictionary setObject:myString forKey:@"headersString"];
+        [dictionary setObject:response.allHeaderFields[@"Set-Cookie"] forKey:@"headersString"];
     }
 }
 
