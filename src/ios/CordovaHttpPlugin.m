@@ -31,7 +31,7 @@
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
         [dictionary setObject:[NSNumber numberWithInt:response.statusCode] forKey:@"status"];
         [dictionary setObject:response.allHeaderFields forKey:@"headers"];
-        [dictionary setObject:[NSString stringWithFormat:@"my dictionary is %@", response.allHeaderFields] forKey:@"myheaders"];
+        [dictionary setObject:[NSString stringWithFormat:@"%@", response.allHeaderFields] forKey:@"headersString"];
     }
 }
 
