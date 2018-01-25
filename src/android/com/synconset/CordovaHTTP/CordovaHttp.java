@@ -123,7 +123,7 @@ public abstract class CordovaHttp {
             if ((key != null) && (!value.isEmpty())) {
                 parsed_headers.put(key, value.get(0));
                 //sb.append(key + " = " + value.get(0) + ", ");
-                sb.append("\"").append(key).append("\" = \"").append(value.get(0)).append("\", \n");
+                sb.append("\"").append(key).append("\" = \"").append(value.get(0)).append("\", ");
             }
         }
         response.put("headers", new JSONObject(parsed_headers));
