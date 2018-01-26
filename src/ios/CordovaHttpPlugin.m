@@ -77,6 +77,7 @@
     [self setRequestHeaders: headers forManager: manager];
    
     CordovaHttpPlugin* __weak weakSelf = self;
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [TextResponseSerializer serializer];
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
