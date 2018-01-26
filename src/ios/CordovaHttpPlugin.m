@@ -33,7 +33,7 @@
         [dictionary setObject:response.allHeaderFields forKey:@"headers"];
         NSString *myString = [response.allHeaderFields[@"Set-Cookie"] stringByReplacingOccurrencesOfString:@", " withString:@";~~;"];
         if (myString.length == 0) {
-            myString = "";
+            myString = @"";
         }
         [dictionary setObject:myString forKey:@"cookie"];
     }
