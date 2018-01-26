@@ -214,6 +214,8 @@
     
     CordovaHttpPlugin* __weak weakSelf = self;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSLog(@"%@", parameters);
+    NSLog(@"%@", headers);
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         /*
          *
