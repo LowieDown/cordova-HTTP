@@ -82,8 +82,8 @@
     CordovaHttpPlugin* __weak weakSelf = self;
 
     manager.responseSerializer = [TextResponseSerializer serializer];
-    NSLog(@"%@", parameters);
-    NSLog(@"%@", headers);
+    // NSLog(@"%@", parameters);
+    // NSLog(@"%@", headers);
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [self setResults: dictionary withTask: task];
@@ -111,8 +111,8 @@
     CordovaHttpPlugin* __weak weakSelf = self;
    
     manager.responseSerializer = [TextResponseSerializer serializer];
-    NSLog(@"%@", parameters);
-    NSLog(@"%@", headers);
+    // NSLog(@"%@", parameters);
+    // NSLog(@"%@", headers);
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [self setResults: dictionary withTask: task];
@@ -214,8 +214,8 @@
     
     CordovaHttpPlugin* __weak weakSelf = self;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSLog(@"%@", parameters);
-    NSLog(@"%@", headers);
+    // NSLog(@"%@", parameters);
+    // NSLog(@"%@", headers);
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         /*
          *
