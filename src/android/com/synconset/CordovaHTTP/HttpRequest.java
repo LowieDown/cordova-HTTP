@@ -1582,8 +1582,8 @@ public class HttpRequest {
       else
         connection = CONNECTION_FACTORY.create(url);
       connection.setRequestMethod(requestMethod);
-      connection.setReadTimeout(10000);
-      connection.setConnectTimeout(5000);
+      connection.setReadTimeout(30000);
+      connection.setConnectTimeout(10000);
       return connection;
     } catch (IOException e) {
       throw new HttpRequestException(e);
