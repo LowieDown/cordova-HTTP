@@ -7,6 +7,7 @@
 
 - (void)setRequestHeaders:(NSDictionary*)headers forManager:(AFHTTPSessionManager*)manager;
 - (void)setResults:(NSMutableDictionary*)dictionary withTask:(NSURLSessionTask*)task;
+- (void)setRedirect:(bool)redirect forManager:(AFHTTPSessionManager*)manager;
 
 @end
 
@@ -23,6 +24,18 @@
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+    }];
+}
+
+- (void)setRedirect:(AFHTTPSessionManager*)manager {
+    [manager setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest * _Nonnull(NSURLSession * _Nonnull session,
+        NSURLSessionTask * _Nonnull task, NSURLResponse * _Nonnull response, NSURLRequest * _Nonnull request) {
+
+        // if (followRedirect) {
+        //     return request;
+        // } else {
+            return nil;
+        // }
     }];
 }
 
