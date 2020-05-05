@@ -91,6 +91,7 @@
     NSDictionary *parameters = [command.arguments objectAtIndex:1];
     NSDictionary *headers = [command.arguments objectAtIndex:2];
     [self setRequestHeaders: headers forManager: manager];
+    [self setRedirect: manager];
    
     CordovaHttpPlugin* __weak weakSelf = self;
 
@@ -120,7 +121,8 @@
     NSDictionary *parameters = [command.arguments objectAtIndex:1];
     NSDictionary *headers = [command.arguments objectAtIndex:2];
     [self setRequestHeaders: headers forManager: manager];
-   
+    [self setRedirect: manager];
+
     CordovaHttpPlugin* __weak weakSelf = self;
    
     manager.responseSerializer = [TextResponseSerializer serializer];
@@ -149,7 +151,8 @@
     NSDictionary *parameters = [command.arguments objectAtIndex:1];
     NSDictionary *headers = [command.arguments objectAtIndex:2];
     [self setRequestHeaders: headers forManager: manager];
-    
+    [self setRedirect: manager];
+
     CordovaHttpPlugin* __weak weakSelf = self;
     
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -181,6 +184,7 @@
     NSURL *fileURL = [NSURL URLWithString: filePath];
     
     [self setRequestHeaders: headers forManager: manager];
+    [self setRedirect: manager];
     
     CordovaHttpPlugin* __weak weakSelf = self;
     manager.responseSerializer = [TextResponseSerializer serializer];
